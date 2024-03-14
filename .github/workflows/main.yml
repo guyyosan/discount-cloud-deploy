@@ -6,7 +6,7 @@ on:
             - main
 
 env:
-    PROJECT_ID: ${{ secrets.GCP_PROJECT }}
+    PROJECT_ID: cloud-build-demo-363112
     IMAGE: pytest
     DOCKER_REPO_URL: https://us-central1-docker.pkg.dev/cloud-build-demo-363112/gha
 
