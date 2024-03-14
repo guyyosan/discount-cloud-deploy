@@ -45,4 +45,4 @@ jobs:
             # Push the Docker image to Google Container Registry
             - name: Publish
               run: |-
-                  docker push "$DOCKER_REPO_URL/$IMAGE:$GITHUB_SHA"
+                  docker push "$DOCKER_REPO_URL/$IMAGE:${GITHUB_SHA::7}"
