@@ -8,7 +8,7 @@ on:
 env:
     PROJECT_ID: cloud-build-demo-363112
     IMAGE: pytest
-    DOCKER_REPO_URL: https://us-central1-docker.pkg.dev/cloud-build-demo-363112/gha
+    DOCKER_REPO_URL: us-central1-docker.pkg.dev/cloud-build-demo-363112/gha
 
 jobs:
     setup-build-publish-deploy:
