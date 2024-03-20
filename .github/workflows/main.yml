@@ -22,7 +22,8 @@ jobs:
             - id: "auth"
               uses: "google-github-actions/auth@v2"
               with:
-                  credentials_json: "${{ secrets.SA_KEY }}"
+                  project_id: "1049042308740"
+                  workload_identity_provider: "projects/1049042308740/locations/global/workloadIdentityPools/github-actions-dev/providers/github"
 
             - name: "Set up Cloud SDK"
               uses: "google-github-actions/setup-gcloud@v2"
