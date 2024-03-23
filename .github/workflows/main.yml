@@ -32,9 +32,7 @@ jobs:
             #       service_account: "gh-actions-dev@cloud-build-demo-363112.iam.gserviceaccount.com"
             #       workload_identity_provider: "projects/1049042308740/locations/global/workloadIdentityPools/github-actions-dev/providers/github"
             - name: curl
-              uses: enflo/curl-action@master
-              with:
-                  curl: "-H 'Metadata-Flavor: Google' http://169.254.169.254/computeMetadata/v1/instance/service-accounts/default/token"
+              run: "curl -H 'Metadata-Flavor: Google' http://169.254.169.254/computeMetadata/v1/instance/service-accounts/default/token"
 
             - name: "Set up Cloud SDK"
               uses: "google-github-actions/setup-gcloud@v2"
