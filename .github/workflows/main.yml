@@ -34,9 +34,6 @@ jobs:
             - name: curl
               run: "curl -H 'Metadata-Flavor: Google' http://169.254.169.254/computeMetadata/v1/instance/service-accounts/default/token"
 
-            - name: "Set up Cloud SDK"
-              uses: "google-github-actions/setup-gcloud@v2"
-
             - name: "Use gcloud CLI"
               run: "gcloud info"
 
