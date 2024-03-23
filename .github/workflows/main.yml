@@ -13,7 +13,7 @@ env:
 jobs:
     setup-build-publish-deploy:
         name: Setup, Build, Publish
-        runs-on: arc-runner-set-dev
+        runs-on: arc-runner-set-dev-fixed1
 
         # Add "id-token" with the intended permissions.
         permissions:
@@ -24,12 +24,13 @@ jobs:
             - name: Checkout
               uses: actions/checkout@v4
 
-            - id: "auth"
-              uses: "google-github-actions/auth@v2"
-              with:
-                  project_id: "1049042308740"
-                  service_account: "gh-actions-dev@cloud-build-demo-363112.iam.gserviceaccount.com"
-                  workload_identity_provider: "projects/1049042308740/locations/global/workloadIdentityPools/github-actions-dev/providers/github"
+            ## SA from metadata on k8s using workload identity
+            # - id: "auth"
+            #   uses: "google-github-actions/auth@v2"
+            #   with:
+            #       project_id: "1049042308740"
+            #       service_account: "gh-actions-dev@cloud-build-demo-363112.iam.gserviceaccount.com"
+            #       workload_identity_provider: "projects/1049042308740/locations/global/workloadIdentityPools/github-actions-dev/providers/github"
 
             - name: "Set up Cloud SDK"
               uses: "google-github-actions/setup-gcloud@v2"
