@@ -7,7 +7,7 @@ on:
 
 env:
     PROJECT_ID: cloud-build-demo-363112
-    IMAGE: pytest
+    IMAGE: demo-nodejs-dev
     DOCKER_REPO_URL: us-central1-docker.pkg.dev/cloud-build-demo-363112/gha
 
 jobs:
