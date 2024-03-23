@@ -13,7 +13,7 @@ env:
 jobs:
     setup-build-publish-deploy:
         name: Setup, Build, Publish
-        runs-on: arc-runner-set-dev-fixed2
+        runs-on: arc-runner-set-dev-fixed3
 
         # Add "id-token" with the intended permissions.
         permissions:
@@ -42,18 +42,13 @@ jobs:
             - run: |-
                   gcloud --quiet auth configure-docker us-central1-docker.pkg.dev
 
-            - name: Build with Kaniko
-              uses: gcr.io/kaniko-project/executor@v1 # Use latest Kaniko version
-              with:
-                  destination: $DOCKER_REPO_URL/$IMAGE:${GITHUB_SHA::7}
-                  dockerfile: Dockerfile
-            
+
                   # Build the Docker image
-            # - name: Build
-            #   run: |-
-            #       docker build \
-            #         --tag "$DOCKER_REPO_URL/$IMAGE:${GITHUB_SHA::7}" \
-            #         .
+            - name: Build
+              run: |-
+                  docker build \
+                    --tag "$DOCKER_REPO_URL/$IMAGE:${GITHUB_SHA::7}" \
+                    .
 
             # Push the Docker image to Google Container Registry
             - name: Publish

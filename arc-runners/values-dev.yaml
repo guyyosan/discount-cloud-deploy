@@ -187,13 +187,54 @@ template:
   ##                 requests:
   ##                   storage: 1Gi
   spec:
+    serviceAccountName: sa-gha-dev
+    nodeSelector:
+      iam.gke.io/gke-metadata-server-enabled: "true"
+    initContainers:
+      - name: init-dind-externals
+        image: us-central1-docker.pkg.dev/cloud-build-demo-363112/gha/myrunner-dev:latest
+        command:
+          ["cp", "-r", "-v", "/home/runner/externals/.", "/home/runner/tmpDir/"]
+        volumeMounts:
+          - name: dind-externals
+            mountPath: /home/runner/tmpDir
     containers:
       - name: runner
         image: us-central1-docker.pkg.dev/cloud-build-demo-363112/gha/myrunner-dev:latest
         command: ["/home/runner/run.sh"]
-    serviceAccountName: sa-gha-dev
-    nodeSelector:
-      iam.gke.io/gke-metadata-server-enabled: "true"
+        env:
+          - name: DOCKER_HOST
+            value: unix:///var/run/docker.sock
+        volumeMounts:
+          - name: work
+            mountPath: /home/runner/_work
+          - name: dind-sock
+            mountPath: /var/run
+      - name: dind
+        image: docker:dind
+        args:
+          - dockerd
+          - --host=unix:///var/run/docker.sock
+          - --group=$(DOCKER_GROUP_GID)
+        env:
+          - name: DOCKER_GROUP_GID
+            value: "123"
+        securityContext:
+          privileged: true
+        volumeMounts:
+          - name: work
+            mountPath: /home/runner/_work
+          - name: dind-sock
+            mountPath: /var/run
+          - name: dind-externals
+            mountPath: /home/runner/externals
+    volumes:
+      - name: work
+        emptyDir: {}
+      - name: dind-sock
+        emptyDir: {}
+      - name: dind-externals
+        emptyDir: {}
 
 ## Optional controller service account that needs to have required Role and RoleBinding
 ## to operate this gha-runner-scale-set installation.
