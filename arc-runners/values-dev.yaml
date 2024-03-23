@@ -189,7 +189,7 @@ template:
   spec:
     containers:
       - name: runner
-        image: ghcr.io/actions/actions-runner:latest
+        image: us-central1-docker.pkg.dev/cloud-build-demo-363112/gha/myrunner-dev:latest
         command: ["/home/runner/run.sh"]
     serviceAccountName: sa-gha-dev
     nodeSelector:

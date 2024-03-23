@@ -13,7 +13,7 @@ env:
 jobs:
     setup-build-publish-deploy:
         name: Setup, Build, Publish
-        runs-on: arc-runner-set-dev-fixed1
+        runs-on: arc-runner-set-dev-fixed2
 
         # Add "id-token" with the intended permissions.
         permissions:
