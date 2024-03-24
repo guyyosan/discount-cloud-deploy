@@ -40,7 +40,7 @@ jobs:
             - name: "build image with cloud build"
               run: "gcloud builds submit --tag $DOCKER_REPO_URL/$IMAGE:${GITHUB_SHA::7}"
 
-            # # Configure Docker to use the gcloud command-line tool as a credential
+              # # Configure Docker to use the gcloud command-line tool as a credential
             # # helper for authentication
             # - run: |-
             #       gcloud --quiet auth configure-docker us-central1-docker.pkg.dev
