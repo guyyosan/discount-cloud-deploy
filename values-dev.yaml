@@ -1,5 +1,5 @@
 replicaCount: 1
 image:
   repository: us-central1-docker.pkg.dev/cloud-build-demo-363112/gha/demo-nodejs-dev
-  tag: 0eee173
+  tag: e99e1a8
   pullPolicy: IfNotPresent
