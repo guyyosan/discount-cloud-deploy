@@ -22,7 +22,7 @@ spec:
     spec:
       containers:
         - name: hello-world
-          image: "us-central1-docker.pkg.dev/cloud-build-demo-363112/gha/demo-nodejs-dev:0eee173"
+          image: "us-central1-docker.pkg.dev/cloud-build-demo-363112/gha/demo-nodejs-dev:e99e1a8"
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8080
